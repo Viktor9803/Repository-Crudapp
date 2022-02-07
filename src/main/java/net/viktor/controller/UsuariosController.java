@@ -24,13 +24,14 @@ public class UsuariosController {
 	}
 	
 	@PostMapping("/create")
-	public String Registro(@RequestParam("nombre") String nombretmp, @RequestParam("apellido") String apellidotmp, @RequestParam("nusuario") String nusuariotmp, @RequestParam("passwork") String passworktmp) {
+	public String Registro(@RequestParam("nombre") String nombretmp, @RequestParam("apellido") String apellidotmp, @RequestParam("nusuario") String nusuariotmp, @RequestParam("passwork") String passworktmp, @RequestParam("genero") String generotmp) {
+		//Debo agregar el <<<<@RequetParam("genero") Integer generotmp>>>> a la clase
 		Usuarios user = new Usuarios();
 		user.setNombre(nombretmp);
 		user.setApellido(apellidotmp);
 		user.setNusuario(nusuariotmp);
 		user.setPasswork(passworktmp);
-		user.setGenero(1);
+		user.setGenero(generotmp);
 		repo.save(user);
 		System.out.println(user);
 		return "crudusuarios/lista";		

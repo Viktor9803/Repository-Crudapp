@@ -17,7 +17,7 @@ public class Usuarios {
 	private String apellido;
 	private String nusuario;
 	private String passwork;
-	private Integer genero;
+	private String genero;
 	
 	public Integer getId() {
 		return id;
@@ -49,10 +49,10 @@ public class Usuarios {
 	public void setPasswork(String passwork) {
 		this.passwork = passwork;
 	}
-	public Integer getGenero() {
+	public String getGenero() {
 		return genero;
 	}
-	public void setGenero(Integer genero) {
+	public void setGenero(String genero) {
 		this.genero = genero;
 	}
 	
