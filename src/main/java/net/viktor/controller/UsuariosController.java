@@ -19,6 +19,10 @@ public class UsuariosController {
 	@Autowired
 	private usuariosRepository repo;
 	Usuarios user = new Usuarios();
+
+/*
+ * METODOS TIPO GET	
+ */
 	
 	@GetMapping("/create")
 	public String mostrarRegistro() {
@@ -33,13 +37,27 @@ public class UsuariosController {
 		return "crudusuarios/actualizar";
 	}
 	
+	/*
+	 * Metodo para eliminar un registro de la bd (DELETE)
+	 */
+	@GetMapping("/delete")
+	public String Eliminar() {
+		int idelim = 14;
+		repo.deleteById(idelim);
+		
+		return "crudusuarios/eliminar";		
+	}
+	
+/*
+ * METODOS TIPO POST
+ */
 	
 	/*
 	 * Método de actualización de registro en la bd (update)
 	 */
 	@PostMapping("/actualizado")
 	public String Actualizar(@RequestParam("nombre") String nombretmp, @RequestParam("apellido") String apellidotmp, @RequestParam("nusuario") String nusuariotmp, @RequestParam("passwork") String passworktmp, @RequestParam("genero") String generotmp) {
-		Optional<Usuarios> option = repo.findById(10);
+		Optional<Usuarios> option = repo.findById(15);
 		if (option.isPresent()) {
 			Usuarios usertemp = option.get();
 			usertemp.setNombre(nombretmp);
