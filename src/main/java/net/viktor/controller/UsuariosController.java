@@ -23,7 +23,7 @@ public class UsuariosController {
 	@GetMapping("/create")
 	public String mostrarRegistro() {
 		
-		return "crudusuarios/index";		
+		return "crudusuarios/registrar";		
 	}
 	
 	@GetMapping("/update")
