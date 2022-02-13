@@ -24,6 +24,12 @@ public class UsuariosController {
  * METODOS TIPO GET	
  */
 	
+	@GetMapping("/findid")
+	public String findid() {
+		
+		return "crudusuarios/buscarid";
+	}
+	
 	@GetMapping("/create")
 	public String mostrarRegistro() {
 		
@@ -57,7 +63,7 @@ public class UsuariosController {
 	 */
 	@PostMapping("/actualizado")
 	public String Actualizar(@RequestParam("nombre") String nombretmp, @RequestParam("apellido") String apellidotmp, @RequestParam("nusuario") String nusuariotmp, @RequestParam("passwork") String passworktmp, @RequestParam("genero") String generotmp) {
-		Optional<Usuarios> option = repo.findById(15);
+		Optional<Usuarios> option = repo.findById(1);
 		if (option.isPresent()) {
 			Usuarios usertemp = option.get();
 			usertemp.setNombre(nombretmp);
@@ -69,6 +75,7 @@ public class UsuariosController {
 			System.out.println(option.get());
 		} else {
 			System.out.println("Usuario no encontrado.");
+			return "crudusuarios/actualizar";
 		}
 		
 		return "crudusuarios/lista";		
