@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import net.bytebuddy.asm.Advice.Return;
 import net.viktor.model.Usuarios;
 import net.viktor.repository.usuariosRepository;
 
@@ -59,11 +60,25 @@ public class UsuariosController {
  */
 	
 	/*
+	 * Metodo POST Para formulario de buscar id
+	 */
+	@PostMapping("/fid")
+	public String buscarid(@RequestParam("id") Integer idtmp) {
+		Optional<Usuarios> opt = repo.findById(idtmp);
+		if (opt.isPresent()) {
+			return "crudusuarios/actualizar";
+		}else {
+			System.out.println("Coloque un id para buscar");
+		}
+		return "crudusuarios/lista";
+	}
+	
+	/*
 	 * Método de actualización de registro en la bd (update)
 	 */
 	@PostMapping("/actualizado")
 	public String Actualizar(@RequestParam("nombre") String nombretmp, @RequestParam("apellido") String apellidotmp, @RequestParam("nusuario") String nusuariotmp, @RequestParam("passwork") String passworktmp, @RequestParam("genero") String generotmp) {
-		Optional<Usuarios> option = repo.findById(1);
+		Optional<Usuarios> option = repo.findById(11);
 		if (option.isPresent()) {
 			Usuarios usertemp = option.get();
 			usertemp.setNombre(nombretmp);
