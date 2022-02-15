@@ -17,7 +17,7 @@
   </head>
 <body>
 	
-	<h1 class="text-primary" th:text="'Usuario con id: ' + ${idusuario}"></h1>
+	<h1 class="text-primary" th:text="${titulo} + ' ' + ${usuario.nusuario}"></h1>
 	
 		<table class="table table-striped table-dark table-bordered table-hover">
 		  <tr>

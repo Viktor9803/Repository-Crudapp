@@ -51,14 +51,32 @@ public class UsuariosController {
 	}
 	
 	//UPDATE
-		@GetMapping("/update/{id}")
-		public String actualizar(@PathVariable("id") Integer id, Model model) {
-			Usuarios usuarios = usuariosServices.buscarPorId(id);
-			model.addAttribute("titulo", "Editar usuario");
-			model.addAttribute("usuario", usuarios);
+	@GetMapping("/update/{id}")
+	public String actualizar(@PathVariable("id") Integer id, Model model) {
+		Usuarios usuarios = usuariosServices.buscarPorId(id);
+		model.addAttribute("titulo", "Editar usuario");
+		model.addAttribute("usuario", usuarios);
+		
+		return "/crudusuarios/registrar";		
+	}
+	
+	//DELETE
+	@GetMapping("/delete/{id}")
+	public String eliminar(@PathVariable("id") Integer id) {
+		usuariosServices.eliminarPorId(id);
 			
-			return "/crudusuarios/registrar";		
-		}
+		return "crudusuarios/eliminar";		
+	}
+	
+	//READ
+	@GetMapping("/detalle/{id}")
+	public String detalles(@PathVariable("id") Integer id, Model model) {
+		Usuarios usuarios = usuariosServices.buscarPorId(id);
+		model.addAttribute("titulo", "Detalle del usuario: ");
+		model.addAttribute("usuario", usuarios);
+		
+		return "/crudusuarios/detalle";		
+	}
 	
 	//CREATE/GUARDAR
 	@PostMapping("/registrado")
@@ -66,7 +84,17 @@ public class UsuariosController {
 		usuariosServices.guardar(usuarios);
 			
 		return "redirect:/users/";		
-	}
+	}	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 /*
  * METODOS TIPO GET	
@@ -126,18 +154,18 @@ public class UsuariosController {
 	/*
 	 * Metodo para eliminar un registro de la bd (DELETE) por el id, en la tabla
 	 */
-	@GetMapping("/delete/{id}")
+	/*@GetMapping("/delete/{id}")
 	public String Eliminar(@PathVariable("id") int idusuario, Model model) {
 		model.addAttribute("idusuario", idusuario);
 		repo.deleteById(idusuario);
 		
 		return "crudusuarios/eliminar";		
-	}
+	}*/
 	
 	/*
 	 * Metodo para ver detalles de registros en la tabla (READ)
 	 */
-	@GetMapping("/detalle/{id}")
+	/*@GetMapping("/detalle/{id}")
 	public String buscarid(@PathVariable("id") int idusuario, Model model) {
 		model.addAttribute("idusuario", idusuario);
 		//Usuarios ustmp = new Usuarios();
@@ -150,7 +178,7 @@ public class UsuariosController {
 			System.out.println("Coloque un id para buscar");
 		}
 		return "";
-	}
+	}*/
 	
 /*
  * METODOS TIPO POST
