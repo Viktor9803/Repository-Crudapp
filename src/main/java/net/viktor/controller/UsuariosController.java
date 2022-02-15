@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,13 +31,31 @@ public class UsuariosController {
 	
 	Usuarios user = new Usuarios();
 	
+	//FINDALL
 	@GetMapping("/")
 	public String listaTabla(Model model) {
 		List<Usuarios> lista = usuariosServices.Listartodo();
-		
 		model.addAttribute("usuario", lista);
 		
 		return "/crudusuarios/lista";
+	}
+	
+	//CREATE
+	@GetMapping("/create")
+	public String Registrar(Model model) {
+		Usuarios usuarios = new Usuarios();
+		model.addAttribute("titulo", "Registro de nuevo usuario");
+		model.addAttribute("usuario", usuarios);
+		
+		return "/crudusuarios/registrar";		
+	}
+	
+	//CREATE/GUARDAR
+	@PostMapping("/registrado")
+	public String guardar(@ModelAttribute Usuarios usuarios) {
+		usuariosServices.guardar(usuarios);
+			
+		return "redirect:/users/";		
 	}
 
 /*
@@ -49,11 +68,11 @@ public class UsuariosController {
 		return "crudusuarios/buscarid";
 	}
 	
-	@GetMapping("/create")
+	/*@GetMapping("/create")
 	public String mostrarRegistro() {
 		
 		return "crudusuarios/registrar";		
-	}
+	}*/
 	
 	@GetMapping("/update/{id}")
 	public String mostrarActualizacion(@PathVariable("id") int idusuario, Model model) {
@@ -152,7 +171,7 @@ public class UsuariosController {
 	
 	/* *
 	 * Método de registro en la bd (CREATE).
-	 * */
+	 * 
 	@PostMapping("/registrado")
 	public String Registro(@RequestParam("nombre") String nombretmp, @RequestParam("apellido") String apellidotmp, @RequestParam("nusuario") String nusuariotmp, @RequestParam("passwork") String passworktmp, @RequestParam("genero") String generotmp) {
 		Usuarios usercreate = new Usuarios();
@@ -165,6 +184,6 @@ public class UsuariosController {
 		System.out.println(usercreate);
 			
 		return "redirect:/users/";		
-	}
+	}*/
 
 }

@@ -23,9 +23,9 @@
       <div class="container"> 
 
         <div class="card">
-          <h4 class="card-header"><strong>Registro Crud</strong></h4>              
+          <h4 class="card-header"><strong th:text="${titulo}"></strong></h4>              
           <div class="card-body">
-            <form th:action="@{/users/registrado}" method="POST">
+            <form th:object="${usuario}" th:action="@{/users/registrado}" method="POST">
             	
             	<!--<div th:if="${#fields.hasErrors('*')}" class='alert alert-danger' role='alert'>
             	Por favor corrija los siguientes errores:
@@ -38,14 +38,14 @@
                 <div class="col-md-3"> 
                   <div class="form-group">
                     <label for="nombre">Nombre</label>
-                    <input type="text" name="nombre" placeholder="Primer nombre legal" required="required">
+                    <input type="text" th:field="*{nombre}" name="nombre" placeholder="Primer nombre legal" required="required">
                   </div>
                 </div>
                 
                 <div class="col-md-3"> 
                   <div class="form-group">
                     <label for="nombre">Apellido</label>
-                    <input type="text" name="apellido" placeholder="Primer apellido legal" required="required">
+                    <input type="text" th:field="*{apellido}" name="apellido" placeholder="Primer apellido legal" required="required">
                   </div>
                 </div>
                </div>
@@ -54,23 +54,23 @@
                 <div class="col-md-3"> 
                   <div class="form-group">
                     <label for="nusuario">Nombre de usuario</label>
-                    <input type="text" name="nusuario" placeholder="Nombre de usuario" required="required">
+                    <input type="text" th:field="*{nusuario}" name="nusuario" placeholder="Nombre de usuario" required="required">
                   </div>
                 </div>
                 
                 <div class="col-md-3"> 
                   <div class="form-group">
                     <label for="passwork">Contraseña</label>
-                    <input type="text" name="passwork" placeholder="Contraseña de seguridad" required="required">
+                    <input type="text" th:field="*{passwork}" name="passwork" placeholder="Contraseña de seguridad" required="required">
                   </div>
                 </div>
                </div>
               
                 <div class="form-group">
                     <label for="genero">Genero</label>
-                    <select class="form-control" name="genero">
-                      <option value="femenino">Femenino</option>
-                      <option value="masculino">Masculino</option>  
+                    <select class="form-control" th:field="*{genero}" name="genero">
+                      <option th:value="femenino">Femenino</option>
+                      <option th:value="masculino">Masculino</option>  
                     </select>
                   </div>
 
