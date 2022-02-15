@@ -50,6 +50,16 @@ public class UsuariosController {
 		return "/crudusuarios/registrar";		
 	}
 	
+	//UPDATE
+		@GetMapping("/update/{id}")
+		public String actualizar(@PathVariable("id") Integer id, Model model) {
+			Usuarios usuarios = usuariosServices.buscarPorId(id);
+			model.addAttribute("titulo", "Editar usuario");
+			model.addAttribute("usuario", usuarios);
+			
+			return "/crudusuarios/registrar";		
+		}
+	
 	//CREATE/GUARDAR
 	@PostMapping("/registrado")
 	public String guardar(@ModelAttribute Usuarios usuarios) {
@@ -74,7 +84,7 @@ public class UsuariosController {
 		return "crudusuarios/registrar";		
 	}*/
 	
-	@GetMapping("/update/{id}")
+	/*@GetMapping("/update/{id}")
 	public String mostrarActualizacion(@PathVariable("id") int idusuario, Model model) {
 		Optional<Usuarios> usuario = repo.findById(idusuario);
 		if (usuario.isPresent()) {
@@ -84,7 +94,7 @@ public class UsuariosController {
 			return "redirect:/users/";
 		}
 		//return "crudusuarios/actualizar";
-	}
+	}*/
 	
 	/*
 	 * Metodo que devuelve desde la base de datos todo los registros y los muestra en la tabla de la vista.
@@ -148,7 +158,7 @@ public class UsuariosController {
 	
 	/*
 	 * Método de actualización de registro en la bd (UPDATE)
-	 */
+	 
 	@PostMapping("/actualizado")
 	public String Actualizar(@RequestParam("nombre") String nombretmp, @RequestParam("apellido") String apellidotmp, @RequestParam("nusuario") String nusuariotmp, @RequestParam("passwork") String passworktmp, @RequestParam("genero") String generotmp, @PathVariable("id") int idusuario, Model model) {
 		model.addAttribute("idusuario", idusuario);
@@ -167,7 +177,7 @@ public class UsuariosController {
 			System.out.println("Usuario no encontrado.");
 			return "crudusuarios/actualizar";
 		}		
-	}
+	}*/
 	
 	/* *
 	 * Método de registro en la bd (CREATE).

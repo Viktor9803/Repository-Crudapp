@@ -37,6 +37,7 @@
               <div class="row">
                 <div class="col-md-3"> 
                   <div class="form-group">
+                    <input type="hidden" th:field="*{id}">
                     <label for="nombre">Nombre</label>
                     <input type="text" th:field="*{nombre}" name="nombre" placeholder="Primer nombre legal" required="required">
                   </div>
@@ -69,8 +70,8 @@
                 <div class="form-group">
                     <label for="genero">Genero</label>
                     <select class="form-control" th:field="*{genero}" name="genero">
-                      <option th:value="femenino">Femenino</option>
-                      <option th:value="masculino">Masculino</option>  
+                      <option value="femenino">Femenino</option>
+                      <option value="masculino">Masculino</option>  
                     </select>
                   </div>
 
