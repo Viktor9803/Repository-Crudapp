@@ -16,6 +16,10 @@
     <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" >
   </head>
 <body>
+
+	<header th:insert="fragments/menu :: menuprincipal">
+      
+    </header>
 	
 	<h1 class="text-primary">Listado de usuarios registrados</h1>
 	
@@ -42,6 +46,7 @@
 		  	
 		  	<td>
 		  		<a th:href="@{/users/detalle/{id} (id=${usutmp.id})}" class="btn btn-success">Detalle</a>
+		  		<a th:href="@{/users/update/{id} (id=${usutmp.id})}" class="btn btn-primary">Editar</a>
 		  	</td>
 		  	
 		  	<td>
@@ -51,6 +56,10 @@
 		  </tr>
 		  
 		</table>
+
+	<footer th:insert="fragments/footer :: pie-pagina" class="footer">
+      
+    </footer>
 
 	<!-- Bootstrap core JavaScript
     ================================================== -->

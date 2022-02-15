@@ -41,11 +41,17 @@ public class UsuariosController {
 		return "crudusuarios/registrar";		
 	}
 	
-	@GetMapping("/update")
-	public String mostrarActualizacion() {
-		
-		
-		return "crudusuarios/actualizar";
+	@GetMapping("/update/{id}")
+	public String mostrarActualizacion(@PathVariable("id") int idusuario, Model model) {
+		Optional<Usuarios> usuario = repo.findById(idusuario);
+		if (usuario.isPresent()) {
+			model.addAttribute("usuario", usuario);
+			Actualizar(null, null, null, null, null, idusuario, model);
+			return "crudusuarios/actualizar";
+		}else {
+			return "redirect:/users/";
+		}
+		//return "crudusuarios/actualizar";
 	}
 	
 	/*
@@ -112,8 +118,9 @@ public class UsuariosController {
 	 * Método de actualización de registro en la bd (UPDATE)
 	 */
 	@PostMapping("/actualizado")
-	public String Actualizar(@RequestParam("nombre") String nombretmp, @RequestParam("apellido") String apellidotmp, @RequestParam("nusuario") String nusuariotmp, @RequestParam("passwork") String passworktmp, @RequestParam("genero") String generotmp) {
-		Optional<Usuarios> option = repo.findById(11);
+	public String Actualizar(@RequestParam("nombre") String nombretmp, @RequestParam("apellido") String apellidotmp, @RequestParam("nusuario") String nusuariotmp, @RequestParam("passwork") String passworktmp, @RequestParam("genero") String generotmp, @PathVariable("id") int idusuario, Model model) {
+		model.addAttribute("idusuario", idusuario);
+		Optional<Usuarios> option = repo.findById(idusuario);
 		if (option.isPresent()) {
 			Usuarios usertemp = option.get();
 			usertemp.setNombre(nombretmp);
@@ -123,12 +130,11 @@ public class UsuariosController {
 			usertemp.setGenero(generotmp);
 				repo.save(usertemp);
 			System.out.println(option.get());
+			return "redirect:/users/";
 		} else {
 			System.out.println("Usuario no encontrado.");
 			return "crudusuarios/actualizar";
-		}
-		
-		return "crudusuarios/lista";		
+		}		
 	}
 	
 	/* *
@@ -145,7 +151,7 @@ public class UsuariosController {
 			repo.save(usercreate);
 		System.out.println(usercreate);
 			
-		return "crudusuarios/lista";		
+		return "redirect:/users/";		
 	}
 
 }
