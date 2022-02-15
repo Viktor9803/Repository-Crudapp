@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -52,9 +53,7 @@ public class UsuariosController {
 	 */
 	@GetMapping("/")
 	public String Listado(Model model) {
-		List<Usuarios> listusers = new LinkedList<Usuarios>();
-		//Usuarios usuariostmp = new Usuarios();
-		
+		List<Usuarios> listusers = new LinkedList<Usuarios>();		
 			Iterable<Usuarios> usuarios = repo.findAll();
 				for (Usuarios usu : usuarios) {
 					listusers.add(usu);
@@ -79,10 +78,11 @@ public class UsuariosController {
 	/*
 	 * Metodo para eliminar un registro de la bd (DELETE)
 	 */
-	@GetMapping("/delete")
-	public String Eliminar() {
-		int idelim = 2;
-		repo.deleteById(idelim);
+	@GetMapping("/delete/{id}")
+	public String Eliminar(@PathVariable("id") int idusuario, Model model) {
+		//int idelim = 2;
+		model.addAttribute("idusuario", idusuario);
+		repo.deleteById(idusuario);
 		
 		return "crudusuarios/eliminar";		
 	}
