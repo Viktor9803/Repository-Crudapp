@@ -46,7 +46,6 @@ public class UsuariosController {
 		Optional<Usuarios> usuario = repo.findById(idusuario);
 		if (usuario.isPresent()) {
 			model.addAttribute("usuario", usuario);
-			Actualizar(null, null, null, null, null, idusuario, model);
 			return "crudusuarios/actualizar";
 		}else {
 			return "redirect:/users/";
