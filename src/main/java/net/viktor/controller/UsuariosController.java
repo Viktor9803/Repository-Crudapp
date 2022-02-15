@@ -1,15 +1,18 @@
 package net.viktor.controller;
 
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import net.bytebuddy.asm.Advice.Return;
 import net.viktor.model.Usuarios;
 import net.viktor.repository.usuariosRepository;
 
@@ -45,11 +48,40 @@ public class UsuariosController {
 	}
 	
 	/*
+	 * Metodo que devuelve desde la base de datos todo los registros y los muestra en la tabla de la vista.
+	 */
+	@GetMapping("/")
+	public String Listado(Model model) {
+		List<Usuarios> listusers = new LinkedList<Usuarios>();
+		//Usuarios usuariostmp = new Usuarios();
+		
+			Iterable<Usuarios> usuarios = repo.findAll();
+				for (Usuarios usu : usuarios) {
+					listusers.add(usu);
+				}
+				model.addAttribute("usuario", listusers);
+				System.out.println(listusers);
+		
+		return "/crudusuarios/lista";
+	}
+	
+	/*
+	 * Metodo Para eliminar todos los registro de la bd (DELETEALL)
+	 */
+	@GetMapping("/deleteall")
+	public String Deleteall() {
+		repo.deleteAll();
+		System.out.println("Se han eliminado todos los registros.");
+		
+		return "crudusuarios/lista";
+	}
+	
+	/*
 	 * Metodo para eliminar un registro de la bd (DELETE)
 	 */
 	@GetMapping("/delete")
 	public String Eliminar() {
-		int idelim = 14;
+		int idelim = 2;
 		repo.deleteById(idelim);
 		
 		return "crudusuarios/eliminar";		
@@ -101,13 +133,14 @@ public class UsuariosController {
 	 * */
 	@PostMapping("/registrado")
 	public String Registro(@RequestParam("nombre") String nombretmp, @RequestParam("apellido") String apellidotmp, @RequestParam("nusuario") String nusuariotmp, @RequestParam("passwork") String passworktmp, @RequestParam("genero") String generotmp) {
-		user.setNombre(nombretmp);
-		user.setApellido(apellidotmp);
-		user.setNusuario(nusuariotmp);
-		user.setPasswork(passworktmp);
-		user.setGenero(generotmp);
-			repo.save(user);
-		System.out.println(user);
+		Usuarios usercreate = new Usuarios();
+		usercreate.setNombre(nombretmp);
+		usercreate.setApellido(apellidotmp);
+		usercreate.setNusuario(nusuariotmp);
+		usercreate.setPasswork(passworktmp);
+		usercreate.setGenero(generotmp);
+			repo.save(usercreate);
+		System.out.println(usercreate);
 			
 		return "crudusuarios/lista";		
 	}
