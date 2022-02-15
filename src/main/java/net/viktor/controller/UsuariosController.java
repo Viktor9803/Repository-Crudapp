@@ -16,14 +16,28 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import net.viktor.model.Usuarios;
 import net.viktor.repository.usuariosRepository;
+import net.viktor.services.IUsuariosServices;
 
 @Controller
 @RequestMapping(value="/users")
 public class UsuariosController {
 	
 	@Autowired
+	private IUsuariosServices usuariosServices;
+	
+	@Autowired
 	private usuariosRepository repo;
+	
 	Usuarios user = new Usuarios();
+	
+	@GetMapping("/")
+	public String listaTabla(Model model) {
+		List<Usuarios> lista = usuariosServices.Listartodo();
+		
+		model.addAttribute("usuario", lista);
+		
+		return "/crudusuarios/lista";
+	}
 
 /*
  * METODOS TIPO GET	
@@ -55,7 +69,7 @@ public class UsuariosController {
 	
 	/*
 	 * Metodo que devuelve desde la base de datos todo los registros y los muestra en la tabla de la vista.
-	 */
+	 
 	@GetMapping("/")
 	public String Listado(Model model) {
 		List<Usuarios> listusers = new LinkedList<Usuarios>();		
@@ -67,7 +81,7 @@ public class UsuariosController {
 				System.out.println(listusers);
 		
 		return "/crudusuarios/lista";
-	}
+	}*/
 	
 	/*
 	 * Metodo Para eliminar todos los registro de la bd (DELETEALL)

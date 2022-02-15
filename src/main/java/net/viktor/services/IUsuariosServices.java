@@ -10,5 +10,6 @@ public interface IUsuariosServices {
 	public void guardar(Usuarios usuarios);
 	public Usuarios buscarPorId(Integer id);
 	public void eliminarPorId(Integer id);
+	public void eliminarTodo();
 
 }
