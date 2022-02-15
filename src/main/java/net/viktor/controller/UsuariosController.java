@@ -76,15 +76,32 @@ public class UsuariosController {
 	}
 	
 	/*
-	 * Metodo para eliminar un registro de la bd (DELETE)
+	 * Metodo para eliminar un registro de la bd (DELETE) por el id, en la tabla
 	 */
 	@GetMapping("/delete/{id}")
 	public String Eliminar(@PathVariable("id") int idusuario, Model model) {
-		//int idelim = 2;
 		model.addAttribute("idusuario", idusuario);
 		repo.deleteById(idusuario);
 		
 		return "crudusuarios/eliminar";		
+	}
+	
+	/*
+	 * Metodo para ver detalles de registros en la tabla (READ)
+	 */
+	@GetMapping("/detalle/{id}")
+	public String buscarid(@PathVariable("id") int idusuario, Model model) {
+		model.addAttribute("idusuario", idusuario);
+		//Usuarios ustmp = new Usuarios();
+		Optional<Usuarios> opt = repo.findById(idusuario);
+		if (opt.isPresent()) {
+			model.addAttribute("usuario", opt.get());
+			System.out.println("USUARIO: "+opt.get());
+			return "crudusuarios/detalle";
+		}else {
+			System.out.println("Coloque un id para buscar");
+		}
+		return "";
 	}
 	
 /*
@@ -92,21 +109,7 @@ public class UsuariosController {
  */
 	
 	/*
-	 * Metodo POST Para formulario de buscar id
-	 */
-	@PostMapping("/fid")
-	public String buscarid(@RequestParam("id") Integer idtmp) {
-		Optional<Usuarios> opt = repo.findById(idtmp);
-		if (opt.isPresent()) {
-			return "crudusuarios/actualizar";
-		}else {
-			System.out.println("Coloque un id para buscar");
-		}
-		return "crudusuarios/lista";
-	}
-	
-	/*
-	 * Método de actualización de registro en la bd (update)
+	 * Método de actualización de registro en la bd (UPDATE)
 	 */
 	@PostMapping("/actualizado")
 	public String Actualizar(@RequestParam("nombre") String nombretmp, @RequestParam("apellido") String apellidotmp, @RequestParam("nusuario") String nusuariotmp, @RequestParam("passwork") String passworktmp, @RequestParam("genero") String generotmp) {
@@ -129,7 +132,7 @@ public class UsuariosController {
 	}
 	
 	/* *
-	 * Método de registro en la bd (Create).
+	 * Método de registro en la bd (CREATE).
 	 * */
 	@PostMapping("/registrado")
 	public String Registro(@RequestParam("nombre") String nombretmp, @RequestParam("apellido") String apellidotmp, @RequestParam("nusuario") String nusuariotmp, @RequestParam("passwork") String passworktmp, @RequestParam("genero") String generotmp) {

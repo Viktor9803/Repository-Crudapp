@@ -17,7 +17,7 @@
   </head>
 <body>
 	
-	<h1 class="text-primary">Listado de usuarios registrados</h1>
+	<h1 class="text-primary" th:text="'Usuario con id: ' + ${idusuario}"></h1>
 	
 		<table class="table table-striped table-dark table-bordered table-hover">
 		  <tr>
@@ -27,8 +27,6 @@
 		    <th>Usuario</th>
 		    <th>Contrseña</th>
 		    <th>Genero</th>
-		    <th>Ver Detalles</th>
-		    <th>Eliminar Registro</th>
 		  </tr>
 		  
 		  <tr th:each = "usutmp : ${usuario}">
@@ -39,14 +37,6 @@
 		    <td th:text = "${usutmp.nusuario}"></td>
 		    <td th:text = "${usutmp.passwork}"></td>
 		    <td th:text = "${usutmp.genero}"></td>
-		  	
-		  	<td>
-		  		<a th:href="@{/users/detalle/{id} (id=${usutmp.id})}" class="btn btn-success">Detalle</a>
-		  	</td>
-		  	
-		  	<td>
-		  		<a th:href="@{/users/delete/{id} (id=${usutmp.id})}" onclick="return confirm('¿Estas seguro?')" class="btn btn-danger">Eliminar</a>
-		  	</td>
 		  	
 		  </tr>
 		  
