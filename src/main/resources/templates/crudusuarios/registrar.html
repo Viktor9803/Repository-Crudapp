@@ -42,7 +42,7 @@
                 
                 <div class="col-md-3"> 
                   <div class="form-group">
-                    <label for="nombre">Apellido</label>
+                    <label for="apellido">Apellido</label>
                     <input type="text" th:field="*{apellido}" name="apellido" placeholder="Primer apellido legal" required="required">
                   </div>
                 </div>
@@ -56,20 +56,29 @@
 
                 <div class="col-md-3"> 
                   <div class="form-group">
-                    <label for="passwork">Contraseña</label>
-                    <input type="text" th:field="*{passwork}" name="passwork" placeholder="Contraseña de seguridad" required="required">
+                    <label for="password">Contraseña</label>
+                    <input type="password" th:field="*{password}" name="password" placeholder="Contraseña de seguridad" required="required">
                   </div>
                 </div>
                </div>
               
-                <div class="form-group">
+              <div class="row">
+                <div class="form-group col-md-3">
                     <label for="genero">Genero</label>
-                    <select class="form-control col-md-5" th:field="*{genero}" name="genero">
+                    <select class="form-control" th:field="*{genero}" name="genero">
                       <option value="femenino">Femenino</option>
                       <option value="masculino">Masculino</option>  
                     </select>
                   </div>
-              
+
+                <div class="col-md-3"> 
+                  <div class="form-group">
+                    <label for="telefono">Telefono</label>
+                    <input type="text" th:field="*{telefono}" name="telefono" placeholder="Numero de contacto" required="required">
+                  </div>
+                </div>
+              </div>
+
               <hr>
                
               <button type="submit" class="btn btn-primary" th:text="${boton}"></button>  

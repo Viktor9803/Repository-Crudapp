@@ -16,8 +16,9 @@ public class Usuarios {
 	private String nombre;
 	private String apellido;
 	private String nusuario;
-	private String passwork;
+	private String password;
 	private String genero;
+	private Integer telefono;
 	
 	public Integer getId() {
 		return id;
@@ -44,10 +45,10 @@ public class Usuarios {
 		this.nusuario = nusuario;
 	}
 	public String getPasswork() {
-		return passwork;
+		return password;
 	}
 	public void setPasswork(String passwork) {
-		this.passwork = passwork;
+		this.password = passwork;
 	}
 	public String getGenero() {
 		return genero;
@@ -55,11 +56,18 @@ public class Usuarios {
 	public void setGenero(String genero) {
 		this.genero = genero;
 	}
+	public Integer getTelefono() {
+		return telefono;
+	}
+	public void setTelefono(Integer telefono) {
+		this.telefono = telefono;
+	}
+	
 	
 	@Override
 	public String toString() {
 		return "Usuarios [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", nusuario=" + nusuario
-				+ ", passwork=" + passwork + ", genero=" + genero + "]";
-	}
+				+ ", password=" + password + ", genero=" + genero + ", telefono=" + telefono + "]";
+	}	
 		
 }

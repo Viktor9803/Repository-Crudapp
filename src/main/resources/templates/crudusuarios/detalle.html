@@ -34,6 +34,7 @@
 		    <th>Usuario</th>
 		    <th>Contraseña</th>
 		    <th>Genero</th>
+		    <th>Telefono</th>
 		  </tr>
 		  
 		  <tr th:each = "usutmp : ${usuario}">
@@ -42,8 +43,9 @@
 		    <td th:text = "${usutmp.nombre}"></td>
 		    <td th:text = "${usutmp.apellido}"></td>
 		    <td th:text = "${usutmp.nusuario}"></td>
-		    <td th:text = "${usutmp.passwork}"></td>
+		    <td th:text = "${usutmp.password}"></td>
 		    <td th:text = "${usutmp.genero}"></td>
+		    <td th:text = "${usutmp.telefono}"></td>
 		  	
 		  </tr>
 		  
