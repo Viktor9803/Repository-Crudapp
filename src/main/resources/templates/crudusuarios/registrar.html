@@ -8,31 +8,28 @@
     <link rel="icon" href="favicon.ico">
 
     <title>AppCRUD | Aplicación Básica</title>
-    <!-- Bootstrap core CSS -->
-    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
-    <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
-    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" >
+            <!-- Bootstrap core CSS -->
+            <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+            <!-- Custom styles for this template -->
+            <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+            <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+            <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" >
   </head>
 
   <body>
 
+    <header th:insert="fragments/menu :: menuprincipal">
+      
+    </header>
+
 	<main role="main">     
       <hr>
-      <div class="container"> 
+      <div class="container pt-5"> 
 
         <div class="card">
           <h4 class="card-header"><strong th:text="${titulo}"></strong></h4>              
           <div class="card-body">
             <form th:object="${usuario}" th:action="@{/users/registrado}" method="POST">
-            	
-            	<!--<div th:if="${#fields.hasErrors('*')}" class='alert alert-danger' role='alert'>
-            	Por favor corrija los siguientes errores:
-            		<ul>
-            			<li th:each="err : ${#fields.errors('*')}" th:text="${err}"/>
-            		</ul>
-            	</div>-->
             	              
               <div class="row">
                 <div class="col-md-3"> 
@@ -49,16 +46,14 @@
                     <input type="text" th:field="*{apellido}" name="apellido" placeholder="Primer apellido legal" required="required">
                   </div>
                 </div>
-               </div>
-               
-               <div class="row">
+
                 <div class="col-md-3"> 
                   <div class="form-group">
                     <label for="nusuario">Nombre de usuario</label>
                     <input type="text" th:field="*{nusuario}" name="nusuario" placeholder="Nombre de usuario" required="required">
                   </div>
                 </div>
-                
+
                 <div class="col-md-3"> 
                   <div class="form-group">
                     <label for="passwork">Contraseña</label>
@@ -69,12 +64,12 @@
               
                 <div class="form-group">
                     <label for="genero">Genero</label>
-                    <select class="form-control" th:field="*{genero}" name="genero">
+                    <select class="form-control col-md-5" th:field="*{genero}" name="genero">
                       <option value="femenino">Femenino</option>
                       <option value="masculino">Masculino</option>  
                     </select>
                   </div>
-
+              
               <hr>
                
               <button type="submit" class="btn btn-primary">registrar</button>  
@@ -85,14 +80,12 @@
 
     </main>
    
+    <footer th:insert="fragments/footer :: pie-pagina" class="footer">
+      
+    </footer>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>    
-    <script th:src="@{/tinymce/tinymce.min.js}"></script>
+          <!-- Bootstrap core JavaScript -->
+          <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
 
   </body>
 </html>
