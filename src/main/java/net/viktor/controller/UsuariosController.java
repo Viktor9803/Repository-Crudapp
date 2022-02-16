@@ -1,9 +1,14 @@
 package net.viktor.controller;
 
 import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -79,7 +84,19 @@ public class UsuariosController {
 	
 	//CREATE/GUARDAR
 	@PostMapping("/registrado")
-	public String guardar(@ModelAttribute Usuarios usuarios) {
+	public String guardar(@Valid Usuarios usuarios, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			for (ObjectError error : result.getAllErrors()) {
+				System.out.println("Ocurrieron los siguientes errores: " + error.getDefaultMessage());
+			}
+			
+			model.addAttribute("titulo", "Editar usuario");
+			model.addAttribute("boton", "Actualizar");
+			model.addAttribute("usuario", usuarios);
+			
+			return "/crudusuarios/registrar";
+		}
+		
 		usuariosServices.guardar(usuarios);
 			
 		return "redirect:/users/";		
