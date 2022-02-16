@@ -17,13 +17,20 @@ public class Usuarios {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@NotEmpty private String nombre;
-	@NotEmpty private String apellido;
-	@NotEmpty private String nusuario;
-	@NotEmpty private String password;
-	@NotEmpty private String genero;
-	@NotNull private Long telefono;
-	@NotEmpty @Email private String email;
+	@NotEmpty(message="Llene el campo Nombre.")
+	private String nombre;
+	@NotEmpty(message="Llene el campo Apellido.")
+	private String apellido;
+	@NotEmpty(message="Llene el campo Nombre de usuario.")
+	private String nusuario;
+	@NotEmpty(message="Coloque una contraseña de seguridad.")
+	private String password;
+	@NotEmpty(message="Ingrese un genero.")
+	private String genero;
+	@NotNull(message="Ingrese un telefono de contacto.")
+	private Long telefono;
+	@NotEmpty(message="Ingrese un correo.") @Email(message="Ingrese un correo valido.") 
+	private String email;
 	
 	
 	public Integer getId() {

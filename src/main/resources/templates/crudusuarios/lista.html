@@ -31,6 +31,21 @@
 			<a  th:href="@{/users/deleteall}" onclick="return confirm('¿Estas seguro de esta acción? ¡Se eliminaran todos los registos!')" class="btn btn-danger btn-md rounded-lg m-3" th:text="'Vaciar BD'" title="Eliminar todos los registros"></a>
 		</div>
 </div>
+
+				<!--MENSAJES CONFIRMACION, ALERTA, ERROR-->
+			    <div class="alert alert-success alert-dismissable" th:if="${success != null}">
+			    	<label th:text="${success}"></label>
+			    	<button type="button" class="close" data-dismiss="alert">&times;</button>
+			    </div>
+			    <div class="alert alert-warning alert-dismissable" th:if="${warning != null}">
+			    	<label th:text="${warning}"></label>
+			    	<button type="button" class="close" data-dismiss="alert">&times;</button>
+			    </div>
+			    <div class="alert alert-danger alert-dismissable" th:if="${error != null}">
+			    	<label th:text="${error}"></label>
+			    	<button type="button" class="close" data-dismiss="alert">&times;</button>
+			    </div>
+
 	<div class="container pt-3">
 
 		<table class="table table-striped table-dark table-bordered table-hover text-center font-weight-bold">
@@ -71,7 +86,9 @@
     </footer>
 
 			<!-- Bootstrap core JavaScript -->
-			<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
-
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
+    		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+			<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>    
+    		<script th:src="@{/tinymce/tinymce.min.js}"></script>
 </body>
 </html>

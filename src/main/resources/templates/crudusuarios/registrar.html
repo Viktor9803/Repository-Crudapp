@@ -24,19 +24,35 @@
 
 	<main role="main">     
       <hr>
-      <div class="container pt-5"> 
+      <div class="container pt-5">
+
+      <!--<div class="alert alert-danger alert-dismissable" th:if="${#fields.hasErrors('usuarios.*')}" 
+      th:errors="*{usuarios.*}">
+        <p>Por favor corrija los siguientes errores:</p>
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <ul>
+          <li th:each="err : ${#fields.errors('*')}" th:text="${err}"/>
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+        </ul>
+      </div>--> 
 
         <div class="card">
           <h4 class="card-header"><strong th:text="${titulo}"></strong></h4>              
           <div class="card-body">
-            <form th:action="@{/users/registrado}" method="POST" th:object="${usuario}">
+            <form th:action="@{/users/registrado}" method="POST" th:object="${usuarios}">
 
-              <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger" role="alert">
+              <div class="alert alert-danger alert-dismissable" th:if="${#fields.hasErrors('*')}">
               Por favor corrija los siguientes errores:
                 <ul>
                   <li th:each="err : ${#fields.errors('*')}" th:text="${err}"/>
                 </ul>
               </div>
+
+              <!--<div class="alert alert-danger alert-dismissable" th:if="${error != null}">
+                <label th:text="${error}"></label>
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+              </div>-->
+
   	              
               <div class="row">
                 <div class="col-md-3"> 
@@ -44,7 +60,6 @@
                     <input type="hidden" th:field="*{id}">
                     <label for="nombre">Nombre</label>
                     <input type="text" th:field="*{nombre}" name="nombre" placeholder="Nombre" >
-                    <small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
                   </div>
                 </div>
                 
@@ -74,6 +89,7 @@
                 <div class="form-group col-md-3">
                     <label for="genero">Genero</label>
                     <select class="form-control" th:field="*{genero}" name="genero">
+                      <option value="">Seleccione un genero</option>
                       <option value="femenino">Femenino</option>
                       <option value="masculino">Masculino</option>  
                     </select>
@@ -82,7 +98,8 @@
                 <div class="col-md-3"> 
                   <div class="form-group">
                     <label for="telefono">Telefono</label>
-                    <input type="text" th:field="*{telefono}" name="telefono" placeholder="Numero de contacto" >
+                    <input type="text" th:field="*{telefono}" name="telefono" placeholder="Numero de contacto" id="telefono">
+                    <!--<small class="form-text text-danger position-absolute" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></small>-->
                   </div>
                 </div>
 
@@ -95,8 +112,9 @@
               </div>
 
               <hr>
-               
-              <button type="submit" class="btn btn-primary" th:text="${boton}"></button>  
+              <div class="card-footer">
+                <input type="submit" class="btn btn-primary" th:value="${boton}" /> 
+              </div>       
             </form>
           </div>
         </div>
@@ -109,7 +127,10 @@
     </footer>
 
           <!-- Bootstrap core JavaScript -->
-          <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
+          <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+          <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>    
+          <script th:src="@{/tinymce/tinymce.min.js}"></script>
 
   </body>
 </html>
