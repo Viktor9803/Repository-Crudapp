@@ -35,12 +35,9 @@
 
 		<table class="table table-striped table-dark table-bordered table-hover text-center font-weight-bold">
 		  <tr>
-		    <th>ID</th>
+		    <th>Usuario</th>
 		    <th>Nombre</th>
 		    <th>Apellido</th>
-		    <th>Usuario</th>
-		    <th>Contraseña</th>
-		    <th>Genero</th>
 		    <th>Detalles</th>
 		    <th>Editar</th>
 		    <th>Eliminar</th>
@@ -48,23 +45,20 @@
 		  
 		  <tr th:each = "usutmp : ${usuario}">
 
-		    <td th:text = "${usutmp.id}"></td>
+		    <td th:text = "${usutmp.nusuario}"></td>
 		    <td th:text = "${usutmp.nombre}"></td>
 		    <td th:text = "${usutmp.apellido}"></td>
-		    <td th:text = "${usutmp.nusuario}"></td>
-		    <td th:text = "${usutmp.passwork}"></td>
-		    <td th:text = "${usutmp.genero}"></td>
 		  	
 		  	<td>
-		  		<a th:href="@{/users/detalle/{id} (id=${usutmp.id})}" class="btn btn-success col">Detalle</a>
+		  		<a th:href="@{/users/detalle/{id} (id=${usutmp.id})}" class="btn btn-success col-6">Detalle</a>
 		  	</td>
 
 		  	<td>
-		  		<a th:href="@{/users/update/{id} (id=${usutmp.id})}" class="btn btn-primary col">Editar</a>
+		  		<a th:href="@{/users/update/{id} (id=${usutmp.id})}" class="btn btn-primary col-6">Editar</a>
 		  	</td>
 		  	
 		  	<td>
-		  		<a th:href="@{/users/delete/{id} (id=${usutmp.id})}" onclick="return confirm('¿Estas seguro?')" class="btn btn-danger col">Eliminar</a>
+		  		<a th:href="@{/users/delete/{id} (id=${usutmp.id})}" onclick="return confirm('¿Estas seguro?')" class="btn btn-danger col-6">Eliminar</a>
 		  	</td>
 		  	
 		  </tr>

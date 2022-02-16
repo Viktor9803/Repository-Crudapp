@@ -33,6 +33,7 @@ public class UsuariosController {
 	public String Registrar(Model model) {
 		Usuarios usuarios = new Usuarios();
 		model.addAttribute("titulo", "Registro de nuevo usuario");
+		model.addAttribute("boton", "Registrar");
 		model.addAttribute("usuario", usuarios);
 		
 		return "/crudusuarios/registrar";		
@@ -43,6 +44,7 @@ public class UsuariosController {
 	public String actualizar(@PathVariable("id") Integer id, Model model) {
 		Usuarios usuarios = usuariosServices.buscarPorId(id);
 		model.addAttribute("titulo", "Editar usuario");
+		model.addAttribute("boton", "Actualizar");
 		model.addAttribute("usuario", usuarios);
 		
 		return "/crudusuarios/registrar";		
