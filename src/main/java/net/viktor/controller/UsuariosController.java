@@ -84,7 +84,7 @@ public class UsuariosController {
 	
 	//CREATE/GUARDAR
 	@PostMapping("/registrado")
-	public String guardar(@Valid Usuarios usuarios, BindingResult result, Model model) {
+	public String guardar(@Valid @ModelAttribute Usuarios usuarios, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			for (ObjectError error : result.getAllErrors()) {
 				System.out.println("Ocurrieron los siguientes errores: " + error.getDefaultMessage());
