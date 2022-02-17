@@ -25,7 +25,7 @@ public class Usuarios {
 	private String nusuario;
 	@NotEmpty(message="Coloque una contraseña de seguridad.")
 	private String password;
-	@NotEmpty(message="Ingrese un genero.")
+	@NotEmpty(message="Seleccione un genero.")
 	private String genero;
 	@NotNull(message="Ingrese un telefono de contacto.")
 	private Long telefono;

@@ -24,17 +24,7 @@
 
 	<main role="main">     
       <hr>
-      <div class="container pt-5">
-
-      <!--<div class="alert alert-danger alert-dismissable" th:if="${#fields.hasErrors('usuarios.*')}" 
-      th:errors="*{usuarios.*}">
-        <p>Por favor corrija los siguientes errores:</p>
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <ul>
-          <li th:each="err : ${#fields.errors('*')}" th:text="${err}"/>
-          <button type="button" class="close" data-dismiss="alert">&times;</button>
-        </ul>
-      </div>--> 
+      <div class="container pt-5"> 
 
         <div class="card">
           <h4 class="card-header"><strong th:text="${titulo}"></strong></h4>              
@@ -47,12 +37,6 @@
                   <li th:each="err : ${#fields.errors('*')}" th:text="${err}"/>
                 </ul>
               </div>
-
-              <!--<div class="alert alert-danger alert-dismissable" th:if="${error != null}">
-                <label th:text="${error}"></label>
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-              </div>-->
-
   	              
               <div class="row">
                 <div class="col-md-3"> 
@@ -80,7 +64,7 @@
                 <div class="col-md-3"> 
                   <div class="form-group">
                     <label for="password">Contraseña</label>
-                    <input type="password" th:field="*{password}" name="password" placeholder="Contraseña de seguridad" >
+                    <input type="text" th:field="*{password}" name="password" placeholder="Contraseña de seguridad" >
                   </div>
                 </div>
                </div>
@@ -98,8 +82,7 @@
                 <div class="col-md-3"> 
                   <div class="form-group">
                     <label for="telefono">Telefono</label>
-                    <input type="text" th:field="*{telefono}" name="telefono" placeholder="Numero de contacto" id="telefono">
-                    <!--<small class="form-text text-danger position-absolute" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></small>-->
+                    <input type="tel" th:field="*{telefono}" name="telefono" placeholder="123456789" id="telefono" pattern="[0-9]{11}">
                   </div>
                 </div>
 

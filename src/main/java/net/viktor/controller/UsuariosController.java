@@ -92,8 +92,8 @@ public class UsuariosController {
 		if (bindingResult.hasErrors()) {
 			for (ObjectError error : bindingResult.getAllErrors()) {
 				System.out.println("Ocurrieron los siguientes errores: " + error.getDefaultMessage());
-				//attributes.addFlashAttribute("error", error);
 			}
+			
 			if (usuarios.getId() == null) {
 				model.addAttribute("titulo", "Registro de usuario");
 				model.addAttribute("boton", "Registrar");
@@ -103,9 +103,7 @@ public class UsuariosController {
 				model.addAttribute("boton", "Actualizar");
 				model.addAttribute("usuarios", usuarios);
 			}
-						
-			//attributes.addFlashAttribute("error", "ERROR: Se encontraron campos vacios o erroneos");
-			
+							
 			return "/crudusuarios/registrar";
 		}
 		
